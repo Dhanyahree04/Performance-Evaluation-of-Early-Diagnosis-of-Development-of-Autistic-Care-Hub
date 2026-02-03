@@ -1,85 +1,64 @@
-# Performance Evaluation of Early ASD Diagnosis and Autism Care Hub
+# Autism Care Hub - Google Sheets Integration
 
-This repository contains the research and implementation of a data-driven framework for the early diagnosis of **Autism Spectrum Disorder (ASD)**. The project benchmarks various Machine Learning (ML) and Deep Learning (DL) architectures using **AQ-10 screening data** to identify the most accurate diagnostic models, which are then integrated into a comprehensive web platform called the **"Autism Care Hub."** 
+This project integrates the Autism Care Hub screening tool with Google Sheets to store participant data and test results.
 
-## 📋 Project Overview
+## Setup Instructions
 
-Traditional ASD diagnosis is often delayed due to costly and time-consuming subjective evaluations. This project addresses the gap by providing an objective, scalable, and automated screening solution. By evaluating multiple supervised, unsupervised, and deep learning models, the research identifies optimal algorithms for different age groups (children vs. adults) to ensure high-precision results.
+1. Create a Google Cloud Platform Project:
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Create a new project
+   - Enable the Google Sheets API
+   - Create a Service Account
+   - Download the credentials JSON file
 
-## 🚀 Key Features
+2. Create a Google Sheet:
+   - Go to Google Drive
+   - Create a new Google Sheet
+   - Share the sheet with the service account email (found in the credentials JSON)
+   - Note down the spreadsheet ID from the URL
 
-* 
-**Comprehensive Benchmarking:** Comparison of 6 supervised ML classifiers, 5 unsupervised clustering models, and 6 deep learning architectures.
+3. Update the Backend Configuration:
+   - Place the credentials JSON file in the `backend` directory
+   - Update `SPREADSHEET_ID` in `backend/google_sheets.py` with your Google Sheet ID
 
+4. Install Dependencies:
+   ```bash
+   cd backend
+   pip install -r requirements.txt
+   ```
 
-* 
-**Data-Driven Feature Selection:** Utilization of Random Forest algorithms to isolate the most significant behavioral markers from AQ-10 data.
+5. Run the Backend Server:
+   ```bash
+   cd backend
+   python google_sheets.py
+   ```
 
+6. Configure Frontend:
+   - The frontend code is already set up to send data to the backend
+   - Ensure the backend server is running before using the screening tool
 
-* **"Autism Care Hub" Platform:** A web-based ecosystem facilitating:
-* 
-**Early Screening:** Rapid processing of behavioral questionnaires.
+## Data Flow
 
+1. User completes the screening form
+2. Frontend collects:
+   - Basic information (name, gender, ethnicity, age)
+   - Test results
+   - Timestamp
+3. Data is sent to the backend server
+4. Backend saves the data to Google Sheets
+5. User is redirected to the result page
 
-* 
-**Automated Results:** High-accuracy diagnosis powered by the best-performing models.
+## Security Notes
 
+- Keep your credentials JSON file secure
+- Never commit credentials to version control
+- Consider using environment variables for sensitive information
+- Ensure proper CORS configuration for the backend server
 
-* 
-**Resource Library:** Access to articles, guides, and educational tools for families.
+## Troubleshooting
 
-
-* 
-**Support Finder:** A "Locate Nearby Care" feature to find centers and experts.
-
-
-
-
-
-## 🛠️ Tech Stack
-
-* 
-**Machine Learning:** SVM, Random Forest, XGBoost, KNN, Logistic Regression, Decision Trees .
-
-
-* 
-**Deep Learning:** Artificial Neural Networks (Dense), LSTM, Residual Networks, Dropout, and Batch Normalization layers .
-
-
-* 
-**Data Analysis:** Pandas, Scikit-learn, SMOTE (for class imbalance), and One-Hot Encoding.
-
-
-* 
-**Web Development:** HTML5, CSS3, JavaScript (Frontend).
-
-
-
-## 📊 Dataset & Results
-
-The models were trained on AQ-10 datasets for children (292 instances) and adults (704 instances).
-
-| Group | Best Performing Model | Performance Highlight |
-| --- | --- | --- |
-| **Children** | SVM / Dense / LSTM | ~96.72% Accuracy, 100% Recall 
-
- |
-| **Adults** | Logistic Regression / LSTM | ~89.26% Accuracy (LSTM) 
-
- |
-| **Combined** | Dense / Dropout | >93% Accuracy, >98% ROC AUC 
-
- |
-
-## 👥 Contributors
-
-* 
-**Authors:** Dhanya Shree M, Karishma Kaine T, Prithish Goutam S, Priyanka Panda 
-
-
-* 
-**Guide:** Dr. S. Jayanthi Sree 
-
-
-* 
-**Institution:** PSG Institute of Technology and Applied Research
+If you encounter any issues:
+1. Check if the backend server is running
+2. Verify Google Sheets permissions
+3. Check the browser console for errors
+4. Ensure all required fields are filled out
