@@ -1,0 +1,2 @@
+# Performance-Evaluation-of-Early-Diagnosis-of-Development-of-Autistic-Care-Hub
+AI-driven ASD diagnosis framework using AQ-10 data. Benchmarks SVM, RF, XGBoost, and K-Means against Residual Deep Learning. Optimized via feature selection to power the "Autism Care Hub" for streamlined screening, automated diagnosis, and longitudinal monitoring. Bridging the gap between clinical data science and early intervention.
